@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  name      String
+  email     String     @unique
+  password  String
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  // relacionamento 1:1 com Cart
+  cart      Cart?
+
+  // relacionamento 1:N com Order
+  orders    Order[]
+}
+
+model Product {
+  id            Int        @id @default(autoincrement())
+  name          String     @unique
+  description   String
+  price         Float
+  stock         Int        @default(0)
+  category      String
+  section       String
+  brand         String
+  imageUrl      String?
+
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  // cart items e order items que referenciam esse produto
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
+}
+
+model Cart {
+  id         Int          @id @default(autoincrement())
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int          @unique
+
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  // relacionamento 1:N com os cart items
+  items      CartItem[]   
+
+}
+
+model CartItem {
+  id             Int         @id @default(autoincrement())
+  quantity       Int         @default(1)
+  cart           Cart        @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId         Int 
+  product        Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId      Int
+
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@unique([cartId, productId])
+}
+
+model Order {
+  id            Int         @id @default(autoincrement())
+  totalValue    Float    
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        Int
+
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // relacionamento 1:N com orderItems
+  items         OrderItem[]
+}
+
+model OrderItem {
+  id             Int         @id @default(autoincrement())
+  quantity       Int         @default(1)
+  order          Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId        Int
+  product        Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId      Int
+
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}

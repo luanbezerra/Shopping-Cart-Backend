@@ -38,7 +38,7 @@ export class OrderService {
             if (product.stock < item.quantity) {
                 throw new BadRequestException(
                     `Estoque insuficiente para "${product.name}". 
-          Há ${item.quantity} no carrinho mas só restam ${product.stock}.`,
+          Há ${item.quantity} no carrinho mas só restam ${product.stock} em estoque.`,
                 );
             }
 

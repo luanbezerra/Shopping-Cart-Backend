@@ -4,12 +4,12 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEmail, IsOptional, MinLength, IsString } from 'class-validator';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
-    @ApiPropertyOptional({ example: 'Maria Souza', description: 'Nome completo do usuário' })
+    @ApiPropertyOptional({ example: 'Luis', description: 'Nome completo do usuário' })
     @IsOptional()
     @IsString({ message: 'O nome deve ser texto' })
     name?: string;
 
-    @ApiPropertyOptional({ example: 'maria@example.com', description: 'E-mail do usuário' })
+    @ApiPropertyOptional({ example: 'humilimo@example.com', description: 'E-mail do usuário' })
     @IsOptional()
     @IsEmail({}, { message: 'Formato de e-mail inválido' })
     email?: string;

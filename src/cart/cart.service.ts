@@ -50,7 +50,7 @@ export class CartService {
             const novaQuantidadeTotal = existingItem.quantity + quantity;
             if (product.stock < novaQuantidadeTotal) {
                 throw new BadRequestException(
-                    `Estoque insuficiente. Já há ${existingItem.quantity} no carrinho e deseja adicionar ${quantity}, mas só restam ${product.stock} em estoque.`,
+                    `Estoque insuficiente. Já há ${existingItem.quantity} desse produto no carrinho e deseja-se adicionar ${quantity}, mas só restam ${product.stock} itens em estoque.`,
                 );
             }
             return this.prisma.cartItem.update({
@@ -63,7 +63,7 @@ export class CartService {
 
         if (product.stock < quantity) {
             throw new BadRequestException(
-                `Estoque insuficiente. Deseja adicionar ${quantity}, mas só restam ${product.stock} em estoque.`,
+                `Estoque insuficiente. Deseja adicionar ${quantity} desse produto no carrinho, mas só restam ${product.stock} itens em estoque.`,
             );
         }
 
@@ -95,7 +95,7 @@ export class CartService {
 
         if (novaQuantidade > item.quantity && product.stock < novaQuantidade) {
             throw new BadRequestException(
-                `Estoque insuficiente. Já há ${item.quantity} no carrinho e deseja aumentar para ${novaQuantidade}, mas só restam ${product.stock} em estoque.`,
+                `Estoque insuficiente. Já há ${item.quantity} desse produto no carrinho e deseja-se adicionar ${novaQuantidade}, mas só restam ${product.stock} itens em estoque.`,
             );
         }
 

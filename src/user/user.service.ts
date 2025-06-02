@@ -21,7 +21,7 @@ export class UserService {
                 Array.isArray(error.meta?.target) &&
                 (error.meta?.target as string[]).includes('email')
             ) {
-                throw new BadRequestException('Email já cadastrado');
+                throw new BadRequestException('Esse email já foi cadastrado');
             }
             throw new BadRequestException('Não foi possível criar o usuário');
         }
@@ -52,7 +52,7 @@ export class UserService {
                 Array.isArray(error.meta?.target) &&
                 (error.meta?.target as string[]).includes('email')
             ) {
-                throw new BadRequestException('Email já existe');
+                throw new BadRequestException('Esse email já foi cadastrado');
             }
             throw new BadRequestException('Não foi possível criar o usuário');
         }

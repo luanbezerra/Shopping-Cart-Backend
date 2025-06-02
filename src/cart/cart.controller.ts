@@ -37,8 +37,8 @@ export class CartController {
     }
 
     @Post(':userId/items')
-    @ApiOperation({ summary: 'Adiciona item ao carrinho de um usuário' })
-    @ApiResponse({ status: 201, description: 'Item adicionado', type: CartItem })
+    @ApiOperation({ summary: 'Adiciona um produto ao carrinho de um usuário' })
+    @ApiResponse({ status: 201, description: 'Produto adicionado', type: CartItem })
     @ApiBadRequestResponse({ description: 'Estoque insuficiente ou dados inválidos' })
     @ApiNotFoundResponse({ description: 'Usuário ou produto não encontrado' })
     @UsePipes(new ValidationPipe({ whitelist: true }))
@@ -50,7 +50,7 @@ export class CartController {
     }
 
     @Patch(':userId/items/:productId')
-    @ApiOperation({ summary: 'Atualiza quantidade de item no carrinho' })
+    @ApiOperation({ summary: 'Atualiza quantidade de um produto no carrinho' })
     @ApiResponse({ status: 200, description: 'Quantidade atualizada', type: CartItem })
     @ApiBadRequestResponse({ description: 'Estoque insuficiente ou dados inválidos' })
     @ApiNotFoundResponse({ description: 'Usuário, produto ou item não encontrado' })
@@ -64,7 +64,7 @@ export class CartController {
     }
 
     @Delete(':userId/items/:productId')
-    @ApiOperation({ summary: 'Remove item do carrinho' })
+    @ApiOperation({ summary: 'Remove um item do carrinho' })
     @ApiResponse({ status: 200, description: 'Item removido', type: CartItem })
     @ApiNotFoundResponse({ description: 'Usuário, carrinho ou item não encontrado' })
     removeItem(

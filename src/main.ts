@@ -7,7 +7,7 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
     const config = new DocumentBuilder()
-        .setTitle('API de Usuários / E-commerce')
+        .setTitle('Shopping Cart Backend')
         .setDescription('Documentação automática das rotas de usuários')
         .setVersion('1.0')
         .build();

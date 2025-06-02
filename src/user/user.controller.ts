@@ -35,7 +35,7 @@ export class UserController {
 
     @Post('login')
     @HttpCode(HttpStatus.OK)
-    @ApiOperation({ summary: 'Login simplificado de usuário' })
+    @ApiOperation({ summary: 'Simula login de usuário' })
     @ApiResponse({
         status: 200,
         description: 'Login bem-sucedido, retorna dados do usuário',

@@ -27,7 +27,7 @@ export class ProductService {
                 Array.isArray(error.meta?.target) &&
                 (error.meta?.target as string[]).includes('name')
             ) {
-                throw new BadRequestException('Nome de produto já existe');
+                throw new BadRequestException('Esse nome de produto já existe');
             }
             throw new BadRequestException('Não foi possível criar esse produto');
         }
@@ -60,7 +60,7 @@ export class ProductService {
                 Array.isArray(error.meta?.target) &&
                 (error.meta?.target as string[]).includes('name')
             ) {
-                throw new BadRequestException('Nome de produto já existe');
+                throw new BadRequestException('Esse nome de produto já existe');
             }
             throw new BadRequestException('Erro ao atualizar o produto.');
         }

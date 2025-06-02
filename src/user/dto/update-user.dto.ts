@@ -8,15 +8,18 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
     @IsOptional()
     @IsString({ message: 'O nome deve ser texto' })
     name?: string;
-  
+
     @ApiPropertyOptional({ example: 'maria@example.com', description: 'E-mail do usuário' })
     @IsOptional()
     @IsEmail({}, { message: 'Formato de e-mail inválido' })
     email?: string;
-  
-    @ApiPropertyOptional({ example: 'novaSenha123', description: 'Senha do usuário (mínimo 8 caracteres)' })
+
+    @ApiPropertyOptional({
+        example: 'novaSenha123',
+        description: 'Senha do usuário (mínimo 8 caracteres)',
+    })
     @IsOptional()
     @IsString({ message: 'A senha deve ser texto' })
     @MinLength(8, { message: 'A senha deve ter ao menos 8 caracteres' })
     password?: string;
-  }
+}

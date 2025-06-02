@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  // output   = "../generated/prisma"
 }
 
 datasource db {
@@ -38,7 +38,7 @@ model Product {
   stock         Int        @default(0)
   category      String
   section       String
-  brand         String
+  brand         String     
   imageUrl      String?
 
   createdAt     DateTime   @default(now())

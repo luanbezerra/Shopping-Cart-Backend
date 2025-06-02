@@ -21,7 +21,7 @@ Um sistema de backend para um carrinho de compras online, desenvolvido com NestJ
 
 1. **Clonar o repositório**  
    ```bash
-   git clone <URL_DO_REPOSITORIO> Shopping-Cart-Backend
+   git clone https://github.com/luanbezerra/Shopping-Cart-Backend.git
    cd Shopping-Cart-Backend
    ```
 

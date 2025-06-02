@@ -20,7 +20,12 @@ async function main() {
     });
 
     await prisma.cart.createMany({
-        data: [{ userId: 1 }, { userId: 2 }, { userId: 3 }, { userId: 4 }],
+        data: [
+            { id: 1, userId: 1 },
+            { id: 2, userId: 2 },
+            { id: 3, userId: 3 },
+            { id: 4, userId: 4 },
+        ],
     });
 
     await prisma.product.createMany({
